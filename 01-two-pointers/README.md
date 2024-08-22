@@ -20,3 +20,4 @@ This technique is often used in problems that require finding pairs or sub-array
 | Problem                                              | Complexity                              |
 | :--------------------------------------------------: | :-------------------------------------: |
 | [Pair with Target Sum](./01-pair-with-target-sum.md) | :star2:                                 |
+| [Remove Duplicates](./02-remove-duplicates.md)       | :star2:                                 |
