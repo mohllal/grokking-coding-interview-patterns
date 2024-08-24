@@ -17,9 +17,10 @@ This technique is often used in problems that require finding pairs or sub-array
 
 ## Problems
 
-| Problem                                                    | Complexity                              |
-| :--------------------------------------------------------: | :-------------------------------------: |
-| [Pair with Target Sum](./01-pair-with-target-sum.md)       | :star2:                                 |
-| [Remove Duplicates](./02-remove-duplicates.md)             | :star2:                                 |
-| [Squaring a Sorted Array](./03-squaring-a-sorted-array.md) | :star2:                                 |
-| [Triplet Sum to Zero](./04-triplet-sum-to-zero.md)         | :star2: :star2:                         |
+| Problem                                                            | Complexity              |
+| :----------------------------------------------------------------: | :---------------------: |
+| [Pair with Target Sum](./01-pair-with-target-sum.md)               | :star2:                 |
+| [Remove Duplicates](./02-remove-duplicates.md)                     | :star2:                 |
+| [Squaring a Sorted Array](./03-squaring-a-sorted-array.md)         | :star2:                 |
+| [Triplet Sum to Zero](./04-triplet-sum-to-zero.md)                 | :star2: :star2:         |
+| [Triplet Sum Close to Target](./05-triplet-sum-close-to-target.md) | :star2: :star2:         |
