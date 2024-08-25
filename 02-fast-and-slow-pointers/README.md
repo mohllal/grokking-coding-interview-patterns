@@ -19,5 +19,5 @@ This technique is often used in problems that require finding specific patterns 
 
 | Problem                                                         | Complexity              |
 | :-------------------------------------------------------------: | :---------------------: |
-| [Linked List Cycle](./01-linked-list-cycle.md)                   | :star2:                 |
-| [Start of Linked List Cycle](./02-start-of-linked-list-cycle.md) | :star2: :star2:         |
+| [LinkedList Cycle](./01-linked-list-cycle.md)                   | :star2:                 |
+| [Start of LinkedList Cycle](./02-start-of-linked-list-cycle.md) | :star2: :star2:         |
