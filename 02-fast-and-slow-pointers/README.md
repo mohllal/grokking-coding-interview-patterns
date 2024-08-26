@@ -17,8 +17,9 @@ This technique is often used in problems that require finding specific patterns 
 
 ## Problems
 
-| Problem                                                         | Complexity              |
-| :-------------------------------------------------------------: | :---------------------: |
-| [LinkedList Cycle](./01-linked-list-cycle.md)                   | :star2:                 |
-| [Start of LinkedList Cycle](./02-start-of-linked-list-cycle.md) | :star2: :star2:         |
-| [Happy Number](./03-happy-number.md)                            | :star2: :star2:         |
+| Problem                                                          | Complexity              |
+| :-------------------------------------------------------------:  | :---------------------: |
+| [Linked List Cycle](./01-linked-list-cycle.md)                   | :star2:                 |
+| [Start of Linked List Cycle](./02-start-of-linked-list-cycle.md) | :star2: :star2:         |
+| [Happy Number](./03-happy-number.md)                             | :star2: :star2:         |
+| [Middle of the Linked List](./04-middle-of-the-linked-list.md)   | :star2:                 |
