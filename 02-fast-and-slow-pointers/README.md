@@ -23,3 +23,5 @@ This technique is often used in problems that require finding specific patterns 
 | [Start of Linked List Cycle](./02-start-of-linked-list-cycle.md) | :star2: :star2:         |
 | [Happy Number](./03-happy-number.md)                             | :star2: :star2:         |
 | [Middle of the Linked List](./04-middle-of-the-linked-list.md)   | :star2:                 |
+| [Palindrome Linked List](./05-palindrome-linked-list.md)         | :star2: :star2:         |
+| [Rearrange a Linked List](./06-rearrange-a-linked-list.md)       | :star2: :star2:         |
