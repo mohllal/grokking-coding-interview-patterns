@@ -25,3 +25,4 @@ This technique is often used in problems that require finding pairs or sub-array
 | [Triplet Sum to Zero](./04-triplet-sum-to-zero.md)                 | :star2: :star2:         |
 | [Triplet Sum Close to Target](./05-triplet-sum-close-to-target.md) | :star2: :star2:         |
 | [Triplets with Smaller Sum](./06-triplets-with-smaller-sum.md)     | :star2: :star2:         |
+| [Dutch National Flag Problem](./07-dutch-national-flag-problem.md) | :star2: :star2:         |
