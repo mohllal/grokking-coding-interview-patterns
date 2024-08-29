@@ -15,6 +15,7 @@ This repository contains my solutions and notes for the [Grokking the Coding Int
 | [Triplet Sum Close to Target](./01-two-pointers/05-triplet-sum-close-to-target.md) |
 | [Triplets with Smaller Sum](./01-two-pointers/06-triplets-with-smaller-sum.md)     |
 | [Dutch National Flag Problem](./01-two-pointers/07-dutch-national-flag-problem.md) |
+| [Quadruple Sum to Target](./01-two-pointers/08-quadruple-sum-to-target.md)        |
 
 ### Fast and Slow Pointers
 
