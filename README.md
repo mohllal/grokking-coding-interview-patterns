@@ -1,10 +1,10 @@
-# Grokking the Coding Interview: Patterns for Coding Questions
+# Grokking the Coding Interview
 
 This repository contains my solutions and notes for the [Grokking the Coding Interview: Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview) course.
 
 ## Patterns
 
-### Pattern: Two Pointers
+### Two Pointers
 
 | Problem                                                                                                    |
 | :--------------------------------------------------------------------------------------------------------: |
