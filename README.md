@@ -30,3 +30,9 @@ This repository contains my solutions and notes for the [Grokking the Coding Int
 | [Palindrome Linked List](./02-fast-and-slow-pointers/05-palindrome-linked-list.md)         |
 | [Rearrange a Linked List](./02-fast-and-slow-pointers/06-rearrange-a-linked-list.md)       |
 | [Cycle in a Circular Array](./02-fast-and-slow-pointers/07-cycle-in-a-circular-array.md)   |
+
+### Sliding Window
+
+| Problem                                                                                    |
+| :---------------------------------------------------------------------------------------:  |
+| [Maximum Sum Subarray of Size K](./03-sliding-window/01-maximum-sum-subarray-of-size-k.md) |
