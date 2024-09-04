@@ -1,6 +1,6 @@
-# Grokking the Coding Interview
+# Grokking Coding Interview Patterns
 
-This repository contains my solutions and notes for the [Grokking the Coding Interview: Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview) course.
+This repository contains my solutions and notes for the Educative's [Grokking Coding Interview Patterns in Python](https://www.educative.io/courses/grokking-coding-interview-patterns-python) course.
 
 ## Patterns
 
@@ -33,6 +33,13 @@ This repository contains my solutions and notes for the [Grokking the Coding Int
 
 ### Sliding Window
 
-| Problem                                                                                    |
-| :---------------------------------------------------------------------------------------:  |
-| [Maximum Sum Subarray of Size K](./03-sliding-window/01-maximum-sum-subarray-of-size-k.md) |
+| Problem                                                                                            |
+| :------------------------------------------------------------------------------------------------: |
+| [Maximum Sum Subarray of Size K](./03-sliding-window/01-maximum-sum-subarray-of-size-k.md)         |
+| [Smallest Subarray with a Given Sum](./03-sliding-window/02-smallest-subarray-with-a-given-sum.md) |
+
+## Courses
+
+- [Educative - Grokking Coding Interview Patterns in Python](https://www.educative.io/courses/grokking-coding-interview-patterns-python)
+- [Design Gurus - Grokking the Coding Interview: Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview)
+- [Design Gurus - Grokking Dynamic Programming Patterns for Coding Interviews](https://www.designgurus.io/course/grokking-dynamic-programming)
