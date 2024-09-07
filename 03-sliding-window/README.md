@@ -12,3 +12,4 @@ This technique is often used for solving problems that require processing or ana
 | [Smallest Subarray with a Given Sum](./02-smallest-subarray-with-a-given-sum.md)                     | :star2:                 |
 | [Longest Substring with K Distinct Characters](./03-longest-substring-with-k-distinct-characters.md) | :star2: :star2:         |
 | [Fruits into Baskets](./04-fruits-into-baskets.md)                                                   | :star2: :star2:         |
+| [No-repeat Substring](./05-no-repeat-substring.md)                                                   | :star2: :star2: :star2: |
