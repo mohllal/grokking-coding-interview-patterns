@@ -33,13 +33,14 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 
 ### Sliding Window
 
-| Problem                                                                                                                |
-| :--------------------------------------------------------------------------------------------------------------------: |
-| [Maximum Sum Subarray of Size K](./03-sliding-window/01-maximum-sum-subarray-of-size-k.md)                             |
-| [Smallest Subarray with a Given Sum](./03-sliding-window/02-smallest-subarray-with-a-given-sum.md)                     |
-| [Longest Substring with K Distinct Characters](./03-sliding-window/03-longest-substring-with-k-distinct-characters.md) |
-| [Fruits into Baskets](./03-sliding-window/04-fruits-into-baskets.md)                                                   |
-| [No-repeat Substring](./03-sliding-window/05-no-repeat-substring.md)                                                   |
+| Problem                                                                                                                                  |
+| :--------------------------------------------------------------------------------------------------------------------------------------: |
+| [Maximum Sum Subarray of Size K](./03-sliding-window/01-maximum-sum-subarray-of-size-k.md)                                               |
+| [Smallest Subarray with a Given Sum](./03-sliding-window/02-smallest-subarray-with-a-given-sum.md)                                       |
+| [Longest Substring with K Distinct Characters](./03-sliding-window/03-longest-substring-with-k-distinct-characters.md)                   |
+| [Fruits into Baskets](./03-sliding-window/04-fruits-into-baskets.md)                                                                     |
+| [No-repeat Substring](./03-sliding-window/05-no-repeat-substring.md)                                                                     |
+| [Longest Substring with Same Letters after Replacement](./03-sliding-window/06-longest-substring-with-same-letters-after-replacement.md) |
 
 ## Courses
 

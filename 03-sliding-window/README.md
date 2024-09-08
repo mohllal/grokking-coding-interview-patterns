@@ -6,10 +6,11 @@ This technique is often used for solving problems that require processing or ana
 
 ## Problems
 
-| Problem                                                                                              | Complexity              |
-| :--------------------------------------------------------------------------------------------------: | :---------------------: |
-| [Maximum Sum Subarray of Size K](./01-maximum-sum-subarray-of-size-k.md)                             | :star2:                 |
-| [Smallest Subarray with a Given Sum](./02-smallest-subarray-with-a-given-sum.md)                     | :star2:                 |
-| [Longest Substring with K Distinct Characters](./03-longest-substring-with-k-distinct-characters.md) | :star2: :star2:         |
-| [Fruits into Baskets](./04-fruits-into-baskets.md)                                                   | :star2: :star2:         |
-| [No-repeat Substring](./05-no-repeat-substring.md)                                                   | :star2: :star2: :star2: |
+| Problem                                                                                                                | Complexity              |
+| :--------------------------------------------------------------------------------------------------------------------: | :---------------------: |
+| [Maximum Sum Subarray of Size K](./01-maximum-sum-subarray-of-size-k.md)                                               | :star2:                 |
+| [Smallest Subarray with a Given Sum](./02-smallest-subarray-with-a-given-sum.md)                                       | :star2:                 |
+| [Longest Substring with K Distinct Characters](./03-longest-substring-with-k-distinct-characters.md)                   | :star2: :star2:         |
+| [Fruits into Baskets](./04-fruits-into-baskets.md)                                                                     | :star2: :star2:         |
+| [No-repeat Substring](./05-no-repeat-substring.md)                                                                     | :star2: :star2: :star2: |
+| [Longest Substring with Same Letters after Replacement](./06-longest-substring-with-same-letters-after-replacement.md) | :star2: :star2: :star2: |
