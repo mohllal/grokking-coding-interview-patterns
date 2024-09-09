@@ -14,3 +14,4 @@ This technique is often used for solving problems that require processing or ana
 | [Fruits into Baskets](./04-fruits-into-baskets.md)                                                                     | :star2: :star2:         |
 | [No-repeat Substring](./05-no-repeat-substring.md)                                                                     | :star2: :star2: :star2: |
 | [Longest Substring with Same Letters after Replacement](./06-longest-substring-with-same-letters-after-replacement.md) | :star2: :star2: :star2: |
+| [Longest Subarray with Ones after Replacement](./07-longest-subarray-with-ones-after-replacement.md)                   | :star2: :star2: :star2: |

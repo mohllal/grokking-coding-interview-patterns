@@ -41,6 +41,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 | [Fruits into Baskets](./03-sliding-window/04-fruits-into-baskets.md)                                                                     |
 | [No-repeat Substring](./03-sliding-window/05-no-repeat-substring.md)                                                                     |
 | [Longest Substring with Same Letters after Replacement](./03-sliding-window/06-longest-substring-with-same-letters-after-replacement.md) |
+| [Longest Subarray with Ones after Replacement](./03-sliding-window/07-longest-subarray-with-ones-after-replacement.md)                   |
 
 ## Courses
 
