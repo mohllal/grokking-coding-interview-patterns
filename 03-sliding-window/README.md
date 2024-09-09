@@ -16,3 +16,4 @@ This technique is often used for solving problems that require processing or ana
 | [Longest Substring with Same Letters after Replacement](./06-longest-substring-with-same-letters-after-replacement.md) | :star2: :star2: :star2: |
 | [Longest Subarray with Ones after Replacement](./07-longest-subarray-with-ones-after-replacement.md)                   | :star2: :star2: :star2: |
 | [Permutation in a String](./08-permutation-in-a-string.md)                                                             | :star2: :star2: :star2: |
+| [String Anagrams](./09-string-anagrams.md)                                                                             | :star2: :star2: :star2: |
