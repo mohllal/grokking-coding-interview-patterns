@@ -44,6 +44,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 | [Longest Subarray with Ones after Replacement](./03-sliding-window/07-longest-subarray-with-ones-after-replacement.md)                   |
 | [Permutation in a String](./03-sliding-window/08-permutation-in-a-string.md)                                                             |
 | [String Anagrams](./03-sliding-window/09-string-anagrams.md)                                                                             |
+| [Smallest Window Containing Substring](./03-sliding-window/10-smallest-window-containing-substring.md)                                   |
 
 ## Courses
 

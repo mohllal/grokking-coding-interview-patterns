@@ -17,3 +17,4 @@ This technique is often used for solving problems that require processing or ana
 | [Longest Subarray with Ones after Replacement](./07-longest-subarray-with-ones-after-replacement.md)                   | :star2: :star2: :star2: |
 | [Permutation in a String](./08-permutation-in-a-string.md)                                                             | :star2: :star2: :star2: |
 | [String Anagrams](./09-string-anagrams.md)                                                                             | :star2: :star2: :star2: |
+| [Smallest Window Containing Substring](./10-smallest-window-containing-substring.md)                                   | :star2: :star2: :star2: |
