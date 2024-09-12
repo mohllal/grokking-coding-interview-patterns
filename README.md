@@ -45,9 +45,24 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 | [Permutation in a String](./03-sliding-window/08-permutation-in-a-string.md)                                                             |
 | [String Anagrams](./03-sliding-window/09-string-anagrams.md)                                                                             |
 | [Smallest Window Containing Substring](./03-sliding-window/10-smallest-window-containing-substring.md)                                   |
+| [Words Concatenation](./03-sliding-window/11-words-concatenation.md)                                                                     |
 
-## Courses
+## Useful Resources
+
+### Problem Lists
+
+- [Blind 75 List](leetcode.com/problem-list/ar2zuiqj/)
+- [Grind 75 List](leetcode.com/problem-list/ar2s2fi2/)
+- [Grind 169 List](https://leetcode.com/problem-list/ar244hmv/)
+- [NeetCode 150](https://leetcode.com/problem-list/ar21vm0r/)
+
+### Courses
 
 - [Educative - Grokking Coding Interview Patterns in Python](https://www.educative.io/courses/grokking-coding-interview-patterns-python)
 - [Design Gurus - Grokking the Coding Interview: Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview)
 - [Design Gurus - Grokking Dynamic Programming Patterns for Coding Interviews](https://www.designgurus.io/course/grokking-dynamic-programming)
+
+### Miscellaneous
+
+- [Tech Interview Handbook](https://www.techinterviewhandbook.org/)
+- [NeetCode](https://neetcode.io/)
