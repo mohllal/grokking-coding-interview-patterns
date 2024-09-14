@@ -41,6 +41,10 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 10. [Smallest Window Containing Substring](./03-sliding-window/10-smallest-window-containing-substring.md)
 11. [Words Concatenation](./03-sliding-window/11-words-concatenation.md)
 
+### Merge Intervals
+
+1. [Merge Intervals](./04-merge-intervals/01-merge-intervals.md)
+
 ## Useful Resources
 
 ### Problem Lists

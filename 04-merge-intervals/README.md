@@ -12,4 +12,10 @@ Given two intervals (`a` and `b`), there will be six different ways the two inte
 6. `a` and `b` do not overlap, `b` starts before `a`.
 
 ![Pattern: Merge Intervals](../images/pattern-merge-intervals.png)
-*Credit: [Coding Interview Pattern: Merge Interval](https://medium.com/codex/grokking-the-coding-interview-pattern-merge-interval-6e6b1e9e038c)*
+_Credit: [Coding Interview Pattern: Merge Interval](https://medium.com/codex/grokking-the-coding-interview-pattern-merge-interval-6e6b1e9e038c)_
+
+## Problems
+
+|                  Problem                   |   Complexity    |
+| :----------------------------------------: | :-------------: |
+| [Merge Intervals](./01-merge-intervals.md) | :star2: :star2: |
