@@ -44,6 +44,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 ### Merge Intervals
 
 1. [Merge Intervals](./04-merge-intervals/01-merge-intervals.md)
+1. [Insert Interval](./04-merge-intervals/02-insert-interval.md)
 
 ## Useful Resources
 
