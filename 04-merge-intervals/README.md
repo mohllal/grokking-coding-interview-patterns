@@ -19,8 +19,9 @@ _Credit: [Coding Interview Pattern: Merge Interval](https://medium.com/codex/gro
 
 ## Problems
 
-|                         Problem                          |   Complexity    |
-| :------------------------------------------------------: | :-------------: |
-|        [Merge Intervals](./01-merge-intervals.md)        | :star2: :star2: |
-|      **[Insert Interval](./02-insert-interval.md)**      | :star2: :star2: |
-| [Intervals Intersection](./03-intervals-intersection.md) | :star2: :star2: |
+|                           Problem                            |   Complexity    |
+| :----------------------------------------------------------: | :-------------: |
+|          [Merge Intervals](./01-merge-intervals.md)          | :star2: :star2: |
+|        **[Insert Interval](./02-insert-interval.md)**        | :star2: :star2: |
+|   [Intervals Intersection](./03-intervals-intersection.md)   | :star2: :star2: |
+| [Conflicting Appointments](./04-conflicting-appointments.md) | :star2: :star2: |
