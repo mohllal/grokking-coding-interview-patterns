@@ -15,13 +15,15 @@ Given two intervals (`a` and `b`), there will be six different ways the two inte
    2. `b` fully overlaps `a`, `b.start <= a.start` and `b.end >= a.end` (diagram 5).
 
 ![Pattern: Merge Intervals](../images/pattern-merge-intervals.png)
+
 _Credit: [Coding Interview Pattern: Merge Interval](https://medium.com/codex/grokking-the-coding-interview-pattern-merge-interval-6e6b1e9e038c)_
 
 ## Problems
 
-|                           Problem                            |   Complexity    |
-| :----------------------------------------------------------: | :-------------: |
-|          [Merge Intervals](./01-merge-intervals.md)          | :star2: :star2: |
-|        **[Insert Interval](./02-insert-interval.md)**        | :star2: :star2: |
-|   [Intervals Intersection](./03-intervals-intersection.md)   | :star2: :star2: |
-| [Conflicting Appointments](./04-conflicting-appointments.md) | :star2: :star2: |
+|                           Problem                            |       Complexity        |
+| :----------------------------------------------------------: | :---------------------: |
+|          [Merge Intervals](./01-merge-intervals.md)          |     :star2: :star2:     |
+|        **[Insert Interval](./02-insert-interval.md)**        |     :star2: :star2:     |
+|   [Intervals Intersection](./03-intervals-intersection.md)   |     :star2: :star2:     |
+| [Conflicting Appointments](./04-conflicting-appointments.md) |     :star2: :star2:     |
+|  **[Minimum Meeting Rooms](./05-minimum-meeting-rooms.md)**  | :star2: :star2: :star2: |
