@@ -48,6 +48,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 3. [Intervals Intersection](./04-merge-intervals/03-intervals-intersection.md)
 4. [Conflicting Appointments](./04-merge-intervals/04-conflicting-appointments.md)
 5. [Minimum Meeting Rooms](./04-merge-intervals/05-minimum-meeting-rooms.md)
+6. [Maximum CPU Load](./04-merge-intervals/06-maximum-cpu-load.md)
 
 ## Extra Material
 
