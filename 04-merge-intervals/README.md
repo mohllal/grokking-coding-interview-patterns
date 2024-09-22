@@ -28,3 +28,4 @@ _Credit: [Coding Interview Pattern: Merge Interval](https://medium.com/codex/gro
 | [Conflicting Appointments](./04-conflicting-appointments.md) |     :star2: :star2:     |
 |  **[Minimum Meeting Rooms](./05-minimum-meeting-rooms.md)**  | :star2: :star2: :star2: |
 |         [Maximum CPU Load](./06-maximum-cpu-load.md)         | :star2: :star2: :star2: |
+|     **[Employee Free Time](./07-employee-free-time.md)**     | :star2: :star2: :star2: |
