@@ -51,6 +51,10 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 6. [Maximum CPU Load](./04-merge-intervals/06-maximum-cpu-load.md)
 7. [Employee Free Time](./04-merge-intervals/07-employee-free-time.md)
 
+### In-Place Reversal of a Linked List
+
+1. [Reverse a Linked List](./05-in-place-reversal-of-a-linked-list/01-reverse-a-linked-list.md)
+
 ## Extra Material
 
 ### Youtube Channels
