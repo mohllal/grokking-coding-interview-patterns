@@ -54,6 +54,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 ### In-Place Reversal of a Linked List
 
 1. [Reverse a Linked List](./05-in-place-reversal-of-a-linked-list/01-reverse-a-linked-list.md)
+2. [Reverse a Sub-List](./05-in-place-reversal-of-a-linked-list/02-reverse-a-sub-list.md)
 
 ## Extra Material
 

@@ -4,6 +4,7 @@ The in-place reversal of a linked list pattern is a commonly used approach to so
 
 ## Problems
 
-|                        Problem                         | Complexity |
-| :----------------------------------------------------: | :--------: |
-| [Reverse a Linked List](./01-reverse-a-linked-list.md) |  :star2:   |
+|                        Problem                         |   Complexity    |
+| :----------------------------------------------------: | :-------------: |
+| [Reverse a Linked List](./01-reverse-a-linked-list.md) |     :star2:     |
+|    [Reverse a Sub-List](./02-reverse-a-sub-list.md)    | :star2: :star2: |
