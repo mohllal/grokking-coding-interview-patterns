@@ -57,6 +57,7 @@ This repository contains my solutions and notes for the Educative's [Grokking Co
 2. [Reverse a Sub-List](./05-in-place-reversal-of-a-linked-list/02-reverse-a-sub-list.md)
 3. [Reverse Every K-element Sub-List](./05-in-place-reversal-of-a-linked-list/03-reverse-every-k-element-sub-list.md)
 4. [Reverse Alternating K-element Sub-List](./05-in-place-reversal-of-a-linked-list/04-reverse-alternating-k-element-sub-list.md)
+5. [Rotate a Linked List](./05-in-place-reversal-of-a-linked-list/05-rotate-a-linked-list.md)
 
 ## Extra Material
 
