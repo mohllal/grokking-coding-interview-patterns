@@ -2,5 +2,6 @@
   "single-h1": false,
   "line-length": false,
   "no-duplicate-heading": false,
-  "no-emphasis-as-heading": false
+  "no-emphasis-as-heading": false,
+  "no-inline-html": false
 }
