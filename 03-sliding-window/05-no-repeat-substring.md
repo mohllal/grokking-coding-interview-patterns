@@ -1,76 +1,136 @@
-# Problem: No-repeat Substring
+---
+title: No-repeat Substring
+difficulty: Medium
+leetcode_title: Longest Substring Without Repeating Characters
+leetcode: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+tags:
+  - Hash Table
+  - String
+  - Sliding Window
+---
 
-LeetCode problem: [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/).
+# No-repeat Substring
+
+## Problem description
 
 Given a string, find the length of the longest substring which has no repeating characters.
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
 ```plaintext
-Input: String = "aabccbb"
+Input: s = "aabccbb"
 Output: 3
 Explanation: The longest substring without any repeating characters is "abc".
 ```
 
-Example 2:
+**Example 2:**
 
 ```plaintext
-Input: String = "abbbb"
+Input: s = "abbbb"
 Output: 2
 Explanation: The longest substring without any repeating characters is "ab".
 ```
 
-Example 3:
+**Example 3:**
 
 ```plaintext
-Input: String="abccde"
+Input: s = "abccde"
 Output: 3
 Explanation: Longest substrings without any repeating characters are "abc" & "cde".
 ```
 
+## Constraints
+
+- `0 <= len(s) <= 5 * 10^4`
+- `s` consists of English letters, digits, symbols and spaces
+
+## Hints
+
+<details>
+<summary>Hint 1</summary>
+
+A window has no repeats exactly when its number of distinct characters equals its length. Both are quantities you can track as the window moves.
+
+</details>
+
+<details>
+<summary>Hint 2</summary>
+
+When the character arriving on the right is already inside the window, one removal from the left may not be enough — the duplicate could be several positions in. Keep shrinking until it is gone.
+
+</details>
+
 ## Solution
 
-The algorithm implements a dynamic sliding window technique similar to the approach used in the [Longest Substring with K Distinct Characters](./03-longest-substring-with-k-distinct-characters.md) problem.
+### Intuition
 
-1. Incrementally slides the window by adding one character at a time to the end of the window.
-2. If the number of distinct characters in the window is less than the current window length, it indicates the presence of duplicate characters. In this case, the algorithm shrinks the window from the start.
-3. The window is shrunk until it no longer contains any duplicate characters, as the goal is to find the longest substring without duplicates.
-4. During the shrinking process, the frequency of the character leaving the window is decremented, and if its count reaches `0`, it is removed from the counter.
-5. After adjusting the window, the algorithm checks if the current window length is the longest so far and stores the result if true.
+A window is valid when every character in it is unique. That is the same as saying the number of distinct characters equals the window length, which turns the validity test into a comparison between `len(counter)` and `window_end - window_start + 1`.
 
-Complexity analysis:
+When a duplicate arrives, those two numbers diverge, so shrink from the left until they agree again. The `while` matters: the earlier copy of the duplicate may be well inside the window, and a single removal would not reach it.
 
-- Time complexity: O(N)
-- Space complexity: O(1)
+```plaintext
+s = "aabccbb"
 
-Why space complexity is O(1)?
+a        {a:1}            1 distinct, length 1   valid    length 1
+aa       {a:2}            1 distinct, length 2   repeat, shrink
+ a       {a:1}            valid                  length 1
+ ab      {a:1, b:1}       valid                  length 2
+ abc     {a:1, b:1, c:1}  valid                  length 3   <- best
+ abcc    {a:1, b:1, c:2}  3 distinct, length 4   repeat, shrink
+  bcc    {b:1, c:2}       2 distinct, length 3   repeat, shrink
+   cc    {c:2}            1 distinct, length 2   repeat, shrink
+    c    {c:1}            valid                  length 1
+    cb   {c:1, b:1}       valid                  length 2
+    cbb  {c:1, b:2}       2 distinct, length 3   repeat, shrink
+     bb  {b:2}            1 distinct, length 2   repeat, shrink
+      b  {b:1}            valid                  length 1
 
-The space complexity of the algorithm will be O(K) where `K` is the number of distinct characters in the input string. This also means `K <= N`, because in the worst case, the whole string might not have any repeating character so the entire string will be added to the counter hashmap.
+answer = 3
+```
 
-Having said that, since we can expect a fixed set of characters in the input string, $95 characters = 52 (letters) + 10 (digits) + 32 (symbols) + 1 (space)$, we can say that the algorithm runs in fixed space O(1); in this case, we can use a fixed-size array instead of the counter hashmap.
+### Algorithm
+
+1. Add `s[window_end]` to the frequency map
+2. While `len(counter)` is smaller than the window length, a duplicate is present: decrement the count of `s[window_start]`, remove the key if it reaches zero, and advance `window_start`
+3. Record `window_end - window_start + 1` as a candidate for the longest length
+
+### Complexity analysis
+
+- Time complexity: $O(n)$ — each character is inserted once and removed at most once.
+- Space complexity: $O(1)$ — see below.
+
+#### Why is the space complexity $O(1)$?
+
+Strictly, the map holds one key per distinct character in the window, so it is $O(\min(n, \Sigma))$ where $\Sigma$ is the alphabet size. In the worst case — a string with no repeats at all — every character ends up in the map, which looks like $O(n)$.
+
+But the alphabet is fixed: $95 \text{ characters} = 52 \text{ (letters)} + 10 \text{ (digits)} + 32 \text{ (symbols)} + 1 \text{ (space)}$. The map can never exceed 95 entries no matter how long the input is, so the space is bounded by a constant. A fixed-size array of 95 slots would work just as well as a hash map here.
 
 ```python
 from collections import Counter
 
-def lengthOfLongestSubstring(s: str) -> int:
-    longest_length = 0
-    
-    window_start = 0
-    window_counter = Counter()
-    for window_end in range(len(s)):
-        window_counter[s[window_end]] += 1
-        
-        while len(window_counter) < (window_end - window_start) + 1:
-            window_counter[s[window_start]] -= 1
-            
-            if window_counter[s[window_start]] == 0:
-                window_counter.pop(s[window_start])
-        
-            window_start += 1
-        
-        longest_length = max(longest_length, (window_end - window_start) + 1)
-        
-    return longest_length
+
+class Solution:
+    def length_of_longest_substring(self, s: str) -> int:
+        longest_length = 0
+
+        window_start = 0
+        window_counter = Counter()
+        for window_end in range(len(s)):
+            window_counter[s[window_end]] += 1
+
+            # fewer distinct characters than positions means something repeats
+            while len(window_counter) < window_end - window_start + 1:
+                start_character = s[window_start]
+                window_counter[start_character] -= 1
+
+                if window_counter[start_character] == 0:
+                    del window_counter[start_character]
+
+                window_start += 1
+
+            longest_length = max(longest_length, window_end - window_start + 1)
+
+        return longest_length
 ```

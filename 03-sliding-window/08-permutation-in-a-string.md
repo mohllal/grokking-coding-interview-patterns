@@ -1,102 +1,156 @@
+---
+title: Permutation in a String
+difficulty: Medium
+leetcode_title: Permutation in String
+leetcode: https://leetcode.com/problems/permutation-in-string/
+tags:
+  - Hash Table
+  - Two Pointers
+  - String
+  - Sliding Window
+---
 
-# Problem: Permutation in a String
+# Permutation in a String
 
-LeetCode problem: [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/).
+## Problem description
 
 Given a pattern and a string, find out if the string contains any permutation of the pattern.
 
-Permutation is defined as the re-arranging of the characters of the string. For example, `abc` has the following six permutations: `abc`, `acb`, `bac`, `bca`, `cab`, `cba`.
+A permutation is a re-arrangement of the characters of a string. For example, `abc` has six permutations: `abc`, `acb`, `bac`, `bca`, `cab`, `cba`.
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
 ```plaintext
-Input: Pattern = "abc", String = "oidbcaf"
+Input: pattern = "abc", s = "oidbcaf"
 Output: true
 Explanation: The string contains "bca" which is a permutation of the given pattern.
 ```
 
-Example 2:
+**Example 2:**
 
 ```plaintext
-Input: Pattern = "dc", String = "odicf"
+Input: pattern = "dc", s = "odicf"
 Output: false
 Explanation: No permutation of the pattern is present in the given string as a substring.
 ```
 
-Example 3:
+**Example 3:**
 
 ```plaintext
-Input: Pattern = "bcdyabcdx", String = "bcdxabcdy"
+Input: pattern = "bcdyabcdx", s = "bcdxabcdy"
 Output: true
 Explanation: Both the string and the pattern are a permutation of each other.
 ```
 
-Example 4:
+**Example 4:**
 
 ```plaintext
-Input: Pattern = "abc", String = "aaacb"
+Input: pattern = "abc", s = "aaacb"
 Output: true
 Explanation: The string contains "acb" which is a permutation of the given pattern.
 ```
 
+## Constraints
+
+- `1 <= len(s1), len(s2) <= 10^4`
+- `s1` and `s2` consist of lowercase English letters
+
+## Hints
+
+<details>
+<summary>Hint 1</summary>
+
+A permutation of the pattern has exactly the pattern's length and exactly the pattern's letter counts. That fixes the window size for you.
+
+</details>
+
+<details>
+<summary>Hint 2</summary>
+
+Comparing two frequency maps at every index is wasteful. Keep one number instead: how many distinct characters currently have exactly the right count.
+
+</details>
+
 ## Solution
 
-The algorithm uses a sliding window of the same length as the input pattern. It maintains a frequency counter of the pattern's characters and compares this to the frequency of characters in the sliding window of the target string as the window moves over the string.
+### Intuition
 
-Here are the steps of the algorithm:
+A permutation of the pattern is a substring of the same length with the same multiset of characters. The length is fixed, so this is a fixed-size window — the only question is how to test the match cheaply.
 
-1. Create a counter to track the frequencies of all characters in the pattern string.
-2. Iterate through the target string, adding one character at a time in the sliding window while maintaining a window of the same length as the pattern.
-3. For each new character added to the window, decrease its frequency in the counter if it matches a character in the pattern. If its frequency reaches zero, that character is fully matched.
-4. If at any time, the number of matched characters equals the number of unique characters in the pattern string, the window contains a permutation of the pattern.
-5. When the window exceeds the pattern's length, the window is shrunk by removing the leftmost character, restoring its frequency in the counter if it belongs to the pattern and adjust the matched count accordingly.
+Comparing the full window map against the pattern map at each step would cost $O(\Sigma)$ per index. Instead, keep a single `matched` counter: decrement a character's outstanding requirement as it enters, and when that requirement hits exactly zero, one more distinct character is fully satisfied. When `matched` equals the number of distinct characters in the pattern, the window is a permutation.
 
-Complexity analysis:
+```plaintext
+pattern = "abc"  ->  need {a:1, b:1, c:1},  window size 3
+s = "oidbcaf"
 
-- Time complexity: O(N + M)
-- Space complexity: O(N) or O(1) if `s1` and `s2` consist of lowercase English letters only.
+end=0   o        not needed                           matched 0
+end=1   oi       not needed                           matched 0
+end=2   oid      not needed                           matched 0   window full, drop 'o'
+end=3    idb     'b' satisfied                        matched 1   drop 'i'
+end=4     dbc    'c' satisfied                        matched 2   drop 'd'
+end=5      bca   'a' satisfied                        matched 3   <- all three matched
 
-Where:
+answer = true
+```
 
-- `N` is the length of `s1` (the pattern string).
-- `M` is the length of `s2` (the target string).
+A character's count is allowed to go negative when the window holds more copies than the pattern needs. `matched` is deliberately left alone in that case — the requirement is still met, just over-met. On the way out, `matched` drops only when the count is exactly `0`, meaning the window genuinely depended on the departing copy; removing a surplus copy merely takes the count from `-1` back to `0`.
+
+### Algorithm
+
+1. Build a frequency map of the pattern
+2. For each character entering on the right, if it belongs to the pattern, decrement its count; if the count becomes `0`, increment `matched`
+3. If `matched` equals the number of distinct characters in the pattern, a permutation has been found
+4. Once the window exceeds the pattern's length, remove `s[window_start]`: if it belongs to the pattern and its count is currently `0`, that match is lost, so decrement `matched`; then restore its count and advance `window_start`
+
+### Complexity analysis
+
+- Time complexity: $O(n + m)$ — $O(n)$ to build the pattern's map, then a single pass over the string. The match test is $O(1)$, not a map comparison.
+- Space complexity: $O(n)$ for the pattern's frequency map, which is $O(1)$ when the input is restricted to lowercase English letters.
+
+Where `n` is the length of the pattern and `m` is the length of the string being searched.
 
 ```python
-def checkInclusion(s1: str, s2: str) -> bool:
-    # O(N) time and O(N) space
-    s1_counter = Counter(s1)
-    
-    window_start = 0
-    window_matched_characters = 0
-    for window_end in range(len(s2)):
-        window_end_character = s2[window_end]
-        
-        # if the character is part of s1, decrease its frequency in the counter
-        if window_end_character in s1_counter:
-            s1_counter[window_end_character] -= 1
-            
-            # if the frequency becomes zero, it means we have matched all instances of this character
-            if s1_counter[window_end_character] == 0:
-                window_matched_characters += 1
-        
-        # if all characters from s1 are matched, return True
-        if window_matched_characters == len(s1_counter):
-            return True
+from collections import Counter
 
-        # shrink the window when its length is longer than the pattern length
-        if window_end >= len(s1) - 1:
-            window_start_character = s2[window_start]
-    
-            # if the character that is leaving is part of s1, increment its frequency back in the counter
-            if window_start_character in s1_counter:
-                # if the character was previously fully matched, we lose the match for it
-                if s1_counter[window_start_character] == 0:
-                    window_matched_characters -= 1
-                s1_counter[window_start_character] += 1
-            
-            window_start += 1
-    
-    return False
+
+class Solution:
+    def check_inclusion(self, s1: str, s2: str) -> bool:
+        pattern_counter = Counter(s1)
+        distinct_needed = len(pattern_counter)
+
+        window_start = 0
+        matched = 0
+        for window_end in range(len(s2)):
+            end_character = s2[window_end]
+
+            if end_character in pattern_counter:
+                pattern_counter[end_character] -= 1
+
+                # reaching zero means this character is now fully satisfied
+                if pattern_counter[end_character] == 0:
+                    matched += 1
+
+            if matched == distinct_needed:
+                return True
+
+            # keep the window exactly len(s1) wide
+            if window_end >= len(s1) - 1:
+                start_character = s2[window_start]
+
+                if start_character in pattern_counter:
+                    # it was satisfied, and it is about to leave
+                    if pattern_counter[start_character] == 0:
+                        matched -= 1
+
+                    pattern_counter[start_character] += 1
+
+                window_start += 1
+
+        return False
 ```
+
+## Relationship to [String Anagrams](./09-string-anagrams.md)
+
+Identical machinery — same fixed window, same `matched` counter, same shrink logic. The only difference is what happens on a hit: this problem returns `True` immediately, while String Anagrams records the window's start index and keeps scanning for the rest.

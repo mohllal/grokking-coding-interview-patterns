@@ -1,126 +1,177 @@
-# Problem: Longest Substring with Same Letters after Replacement
+---
+title: Longest Substring with Same Letters after Replacement
+difficulty: Medium
+leetcode_title: Longest Repeating Character Replacement
+leetcode: https://leetcode.com/problems/longest-repeating-character-replacement/
+tags:
+  - Hash Table
+  - String
+  - Sliding Window
+---
 
-LeetCode problem: [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/).
+# Longest Substring with Same Letters after Replacement
 
-Given a string with lowercase letters only, if you are allowed to replace no more than `K` letters with any letter, find the length of the longest substring having the same letters after replacement.
+## Problem description
+
+Given a string with lowercase letters only, if you are allowed to replace no more than `k` letters with any letter, find the length of the longest substring having the same letters after replacement.
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
 ```plaintext
-Input: String = "aabccbb", k = 2
+Input: s = "aabccbb", k = 2
 Output: 5
-Explanation: Replace the two 'c' with 'b' to have a longest repeating substring "bbbbb".
+Explanation: Replace the two 'c' with 'b' to have the longest repeating substring "bbbbb".
 ```
 
-Example 2:
+**Example 2:**
 
 ```plaintext
-Input: String = "abbcb", k = 1
+Input: s = "abbcb", k = 1
 Output: 4
-Explanation: Replace the 'c' with 'b' to have a longest repeating substring "bbbb".
+Explanation: Replace the 'c' with 'b' to have the longest repeating substring "bbbb".
 ```
 
-Example 3:
+**Example 3:**
 
 ```plaintext
-Input: String = "abccde", k = 1
+Input: s = "abccde", k = 1
 Output: 3
 Explanation: Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
 ```
 
-## Solution 1
+## Constraints
 
-The algorithm uses a dynamic-sized sliding window with greedy character replacement.
+- `1 <= len(s) <= 10^5`
+- `s` consists of only uppercase or lowercase English letters
+- `0 <= k <= len(s)`
 
-1. The algorithm maintains a dynamic-sized window that expands by moving the end of the window to the right.
-2. As the window expands, it tracks the frequency of characters within the window to determine the most frequent character.
-3. The number of replacements needed is calculated by: `(window size) - (frequency of the most frequent character)`. This gives the number of characters that must be changed to make the substring consists of one character.
-4. If the number of character replacements exceeds `K`, the window is shrunk by moving the start of the window to the right until the number of replacements become less than `K`.
-5. Throughout this process, the algorithm keeps track of the maximum length of a valid substring (one where the number of replacements is within the allowed limit).
+## Hints
 
-Complexity analysis:
+<details>
+<summary>Hint 1</summary>
 
-- Time complexity: O(N)
-- Space complexity: O(1)
+You never need to decide *which* letter to keep. Ask a cheaper question instead: for the current window, how many letters would you have to change to make them all identical?
 
-Why time complexity is O(N) and space complexity is O(1)?
+</details>
 
-The algorithm processes each character in the input string at most twice: once when expanding the window and once when shrinking it.
+<details>
+<summary>Hint 2</summary>
 
-1. The outer loop that expands the window runs in O(N) time, where `N` is the number of characters in the input string.
-2. The inner loop uses the counter hashmap to finds the maximum frequency in each iteration. Since the input string contains only lowercase letters, the maximum number of unique characters is `26`. Hence, this operation is effectively O(26), which is a constant time operation.
+Everything except the most frequent letter has to be replaced. So the cost of a window is `window_length - count_of_most_frequent_letter`, and the window is valid while that cost is at most `k`.
 
-Combining these, the overall complexity is O((26 * N) + N), which simplifies to O(N) when dropping the constant factor.
+</details>
 
-Similarly, the space complexity is O(1) because the maximum number of unique characters in the counter hashmap is 26, which is a constant.
+## Solution 1: Recompute the maximum
 
-```python
-from collections import Counter
+### Intuition
 
-def characterReplacement1(s: str, k: int) -> int:
-    longest_length = 0
-    
-    window_start = 0
-    window_counter = Counter()
-    for window_end in range(len(s)):
-        window_end_letter = s[window_end]        
-        window_counter[window_end_letter] += 1
+Trying each candidate letter in turn would be wasteful. The key reframing is that you never choose a letter at all: given any window, the cheapest way to make it uniform is to keep whichever letter already appears most often and replace everything else.
 
-        # number of replacements = (window size) - (frequency of the most frequent character)
-        # if replacements exceed k, shrink the window by moving the start
-        while (window_end - window_start + 1) - max(window_counter.values()) > k:
-            window_start_letter = s[window_start]
-            window_counter[window_start_letter] -= 1
-            window_start += 1
-        
-        longest_length = max(longest_length, (window_end - window_start) + 1)
-        
-    return longest_length
+That gives a cost formula for the window:
+
+```plaintext
+replacements needed = window_length - count_of_most_frequent_letter
 ```
 
-## Solution 2
+The window is valid while that number is at most `k`. Grow on every step, and shrink from the left whenever the cost exceeds `k`.
 
-The improved algorithm eliminates the need to repeatedly search for the most frequent character in the window during each iteration in the shrinking inner loop. Instead, it tracks the maximum frequency of any character (`max_letter_count`) as the window expands, avoiding recalculation when the window shrinks.
+```plaintext
+s = "aabccbb",  k = 2
 
-The idea is that `max_letter_count` might become an overestimation when the window shrinks (e.g., if the most frequent character is removed from the window). However, this overestimation doesn’t affect the correctness of the algorithm. As long as the window remains valid, the overestimated `max_letter_count` still ensures the algorithm correctly identifies the longest possible substring that satisfies the replacement condition.
+a         {a:1}              len 1, max 1, cost 0    valid    length 1
+aa        {a:2}              len 2, max 2, cost 0    valid    length 2
+aab       {a:2,b:1}          len 3, max 2, cost 1    valid    length 3
+aabc      {a:2,b:1,c:1}      len 4, max 2, cost 2    valid    length 4
+aabcc     {a:2,b:1,c:2}      len 5, max 2, cost 3    3 > 2, shrink
+ abcc     {a:1,b:1,c:2}      len 4, max 2, cost 2    valid    length 4
+ abccb    {a:1,b:2,c:2}      len 5, max 2, cost 3    3 > 2, shrink
+  bccb    {b:2,c:2}          len 4, max 2, cost 2    valid    length 4
+  bccbb   {b:3,c:2}          len 5, max 3, cost 2    valid    length 5   <- best
 
-In other words, the `max_letter_count` overestimation does not cause the algorithm to miss a longer valid window. It just means the algorithm might temporarily shrink a window unnecessarily.
+answer = 5
+```
 
-For example:
+### Algorithm
 
-1. If the current window size is `4` and `max_letter_count` is `3`, the window is valid as long as `(window size - max_letter_count) ≤ k`.
-2. When the window shrinks, the actual maximum frequency might decrease, but the algorithm only cares about expanding the window to find longer valid substrings.
-3. If a longer window is found, a higher maximum frequency (`max_letter_count`) will be needed to maintain the validity of the window under the replacement limit e.g. for longer window size `5`, the `max_letter_count` must be equal to `4` to maintain the same replacement limit `K`.
+1. Add `s[window_end]` to the frequency map
+2. While `window_length - max(counter.values()) > k`, decrement the count of `s[window_start]` and advance `window_start`
+3. Record `window_end - window_start + 1` as a candidate for the longest length
 
-Complexity analysis:
+### Complexity analysis
 
-- Time complexity: O(N)
-- Space complexity: O(1)
+- Time complexity: $O(n)$ — the scan itself is linear, and each `max(counter.values())` call inspects at most 26 entries. That makes the work $O(26n)$, which is $O(n)$ once the constant is dropped.
+- Space complexity: $O(1)$ — the map holds at most 26 lowercase letters, a constant independent of `n`.
 
 ```python
 from collections import Counter
 
-def characterReplacement(s: str, k: int) -> int:
-    longest_length = 0
-    
-    window_start = 0
-    window_counter = Counter()
-    max_letter_count = 0
-    for window_end in range(len(s)):
-        window_end_letter = s[window_end]
-        window_counter[window_end_letter] += 1
 
-        max_letter_count = max(max_letter_count, window_counter[window_end_letter])
+class Solution:
+    def character_replacement(self, s: str, k: int) -> int:
+        longest_length = 0
 
-        # if the number of replacements needed exceeds k, shrink the window
-        while (window_end - window_start + 1) - max_letter_count > k:
-            window_start_letter = s[window_start]
-            window_counter[window_start_letter] -= 1
-            window_start += 1
-        
-        longest_length = max(longest_length, (window_end - window_start) + 1)
-        
-    return longest_length
+        window_start = 0
+        window_counter = Counter()
+        for window_end in range(len(s)):
+            window_counter[s[window_end]] += 1
+
+            # every letter except the most frequent one has to be replaced
+            while (window_end - window_start + 1) - max(window_counter.values()) > k:
+                window_counter[s[window_start]] -= 1
+                window_start += 1
+
+            longest_length = max(longest_length, window_end - window_start + 1)
+
+        return longest_length
+```
+
+## Solution 2: Track the maximum
+
+### Intuition
+
+The `max(window_counter.values())` call is the only non-constant work left. It can be removed: track the highest frequency seen so far and update it only when a letter enters the window.
+
+This makes `max_letter_count` an **overestimate** after a shrink — if the most frequent letter was the one removed, the stored value is now larger than any actual count in the window. That sounds like a bug, but it cannot produce a wrong answer.
+
+Here is why. An overestimated `max_letter_count` makes the cost formula *understate* the true cost, so the window looks valid when it may not be — the loop stops shrinking too early. But `longest_length` only ever increases, and to record a **new** best the window must be strictly wider than the previous best. Growing wider while `max_letter_count` stays frozen raises the computed cost by one for every step, so the window cannot keep expanding on a stale value. To get a genuinely longer answer, some letter's count must actually reach a new high, which updates `max_letter_count` honestly.
+
+In short: the overestimate can leave the window temporarily too wide, but it can never let a too-wide window be *recorded* as the answer.
+
+### Algorithm
+
+1. Add `s[window_end]` to the frequency map and update `max_letter_count`
+2. While `window_length - max_letter_count > k`, decrement the count of `s[window_start]` and advance `window_start`, leaving `max_letter_count` untouched
+3. Record `window_end - window_start + 1` as a candidate for the longest length
+
+### Complexity analysis
+
+- Time complexity: $O(n)$ — the same single pass, now with genuinely $O(1)$ work per step rather than $O(26)$.
+- Space complexity: $O(1)$ — at most 26 letters in the map.
+
+```python
+from collections import Counter
+
+
+class Solution:
+    def character_replacement(self, s: str, k: int) -> int:
+        longest_length = 0
+
+        window_start = 0
+        window_counter = Counter()
+        max_letter_count = 0
+        for window_end in range(len(s)):
+            end_letter = s[window_end]
+            window_counter[end_letter] += 1
+            max_letter_count = max(max_letter_count, window_counter[end_letter])
+
+            # max_letter_count is never lowered on shrink; see the reasoning above
+            while (window_end - window_start + 1) - max_letter_count > k:
+                window_counter[s[window_start]] -= 1
+                window_start += 1
+
+            longest_length = max(longest_length, window_end - window_start + 1)
+
+        return longest_length
 ```

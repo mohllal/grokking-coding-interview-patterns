@@ -1,89 +1,140 @@
-# Problem: Words Concatenation
+---
+title: Words Concatenation
+difficulty: Hard
+leetcode_title: Substring with Concatenation of All Words
+leetcode: https://leetcode.com/problems/substring-with-concatenation-of-all-words/
+tags:
+  - Hash Table
+  - String
+  - Sliding Window
+---
 
-LeetCode problem: [30. Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/).
+# Words Concatenation
 
-Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once without any overlapping of words.
+## Problem description
 
-It is given that all words are of the same length.
+Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once, without any overlapping of words.
+
+All words are of the same length.
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
 ```plaintext
-Input: String = "catfoxcat", Words = ["cat", "fox"]
+Input: s = "catfoxcat", words = ["cat", "fox"]
 Output: [0, 3]
-Explanation: The two substring containing both the words are "catfox" & "foxcat".
+Explanation: The two substrings containing both words are "catfox" and "foxcat".
 ```
 
-Example 2:
+**Example 2:**
 
 ```plaintext
-Input: String = "catcatfoxfox", Words = ["cat", "fox"]
+Input: s = "catcatfoxfox", words = ["cat", "fox"]
 Output: [3]
-Explanation: The only substring containing both the words is "catfox".
+Explanation: The only substring containing both words is "catfox".
 ```
 
-## Solution 
+## Constraints
 
-The algorithm iterates through the target string while keeping track of the frequency of words and matching them in chunks.
+- `1 <= len(s) <= 10^4`
+- `1 <= len(words) <= 5000`
+- `1 <= len(words[i]) <= 30`
+- All words have the same length
+- `s` and `words[i]` consist of lowercase English letters
 
-Here are the set of steps for our algorithm:
+## Hints
 
-1. Keep the frequency of each word appears in the input list in a counter.
-2. Slide a window across the string. For each possible starting index in the string (that could potentially match a valid substring), the window captures a portion of the string the size of all words combined. This is done by iterating through each chunk (of word length) within that window.
-3. For each window, a counter keeps track of the words encountered so far in the window. It tries to match the words in the string by checking if each chunk of the current window corresponds to a valid word from the input list.
-4. If a word is found that isn’t part of the list or if a word appears more times than it should (according to the frequency counter), the algorithm stops processing that window early since the window eventually will never be a valid substring and moves to the next possible starting index.
-5. If all words in the current window are valid and appear in the right frequencies, the algorithm recognizes that it has found a valid starting point and stores that index.
+<details>
+<summary>Hint 1</summary>
 
-Complexity analysis:
+Because every word has the same length, a valid substring has a known total length, and it splits into word-sized chunks at fixed offsets. You never have to consider partial words.
 
-- Time complexity: O(N + M)
-- Space complexity: O(N + M)
+</details>
 
-Where:
+<details>
+<summary>Hint 2</summary>
 
-- `N` is length of the string `s`.
-- `M` is length of the list `words`.
-- `K` is length of the word.
+Within one candidate, you can stop early: the moment you see a chunk that is not a word, or a word appearing more times than the list allows, no longer prefix from this start can work.
+
+</details>
+
+## Solution
+
+### Intuition
+
+The fixed word length is what makes this tractable. A valid substring is always `len(words) * len(word)` characters long, and it divides cleanly into `len(words)` chunks. So the window slides one character at a time, but its *contents* are read in word-sized steps rather than character-sized ones.
+
+For each start index, walk the chunks and count them against the required multiset. Two conditions kill a candidate immediately: a chunk that is not a word at all, or a word seen more often than the list provides.
+
+```plaintext
+s = "catcatfoxfox",  words = ["cat", "fox"]  ->  need {cat:1, fox:1}
+total length = 2 * 3 = 6
+
+i=0   | cat | cat |    'cat' seen twice, need 1   -> reject
+i=1   | atc | atf |    'atc' is not a word        -> reject
+i=2   | tca | tfo |    'tca' is not a word        -> reject
+i=3   | cat | fox |    both satisfied             -> accept, record 3
+i=4   | atf | oxf |    'atf' is not a word        -> reject
+i=5   | tfo | xfo |    'tfo' is not a word        -> reject
+i=6   | fox | fox |    'fox' seen twice, need 1   -> reject
+
+answer = [3]
+```
+
+### Algorithm
+
+1. Count the required words into a frequency map
+2. For every start index `i` where a full concatenation could still fit
+3. Read the window as `len(words)` consecutive chunks of `word_length`
+4. Reject the start index as soon as a chunk is not a required word, or its count in the window exceeds the requirement
+5. If all chunks are consumed without rejection, record `i`
+
+### Complexity analysis
+
+- Time complexity: $O(n \cdot m \cdot k)$ — there are roughly $n$ start positions, each examines up to $m$ chunks, and slicing each chunk copies $k$ characters.
+- Space complexity: $O(m \cdot k)$ — the two frequency maps hold up to $m$ words of $k$ characters each.
+
+Where `n` is the length of `s`, `m` is the number of words, and `k` is the length of each word.
 
 ```python
 from collections import Counter
+from typing import List
 
-def findSubstring(s: str, words: List[str]) -> List[int]:
-    indices = []
 
-    words_count = len(words)
-    word_length = len(words[0])
-    total_length = words_count * word_length
-    words_counter = Counter(words)
-    
-    # loop through the string `s`, where `i` is the starting index of the sliding window
-    for i in range(len(s) - total_length + 1):
-        window_counter = Counter()
-        window_matched_words = 0
+class Solution:
+    def find_substring(self, s: str, words: List[str]) -> List[int]:
+        indices = []
 
-        # process the window in chunks of `word_length`, iterating through each word in the window
-        for j in range(words_count):
-            word_start = i + (j * word_length)
-            word_end = word_start + word_length
-            word = s[word_start:word_end]
-            
-            # if the word isn't in the list of words, break early
-            if word not in words_counter:
-                break
-    
-            window_counter[word] += 1
-            
-            # if the word count exceeds the count in the list words, break early
-            if window_counter[word] > words_counter[word]:
-                break
-                
-            # if the current word is valid and hasn't exceeded the count, increase matched words
-            window_matched_words += 1
-        
-        if window_matched_words == words_count:
-            indices.append(i)    
+        words_count = len(words)
+        word_length = len(words[0])
+        total_length = words_count * word_length
+        words_counter = Counter(words)
 
-    return indices
+        for start in range(len(s) - total_length + 1):
+            window_counter = Counter()
+            matched_words = 0
+
+            # read the candidate as consecutive word-sized chunks
+            for chunk in range(words_count):
+                chunk_start = start + chunk * word_length
+                word = s[chunk_start:chunk_start + word_length]
+
+                if word not in words_counter:
+                    break
+
+                window_counter[word] += 1
+
+                # too many copies of this word, so no longer prefix can work
+                if window_counter[word] > words_counter[word]:
+                    break
+
+                matched_words += 1
+
+            if matched_words == words_count:
+                indices.append(start)
+
+        return indices
 ```
+
+The early `break` on a surplus word is what keeps this practical: without it, every start index would always cost a full `m` chunks.
